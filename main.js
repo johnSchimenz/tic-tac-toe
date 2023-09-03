@@ -7,11 +7,11 @@ const gameBoard = (() => {
 })();
 
 // Players objects
-const Player = () => {
-    
+const Player = (name, marker) => {
+    return {name, marker};
 }
 
 // Game-flow object
 const gameFlow = (() => {
-    const playerOne
+    
 })();
