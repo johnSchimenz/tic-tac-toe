@@ -8,13 +8,21 @@ const gameBoard = (() => {
 
 // Players objects
 const Player = (name, marker) => {
-    return {name, marker};
+    const winner = false;
+    return {name, marker, winner};
 }
 
 // Game-flow object
 const gameFlow = (() => {
-    // 1. Player X randomly selects an empty cell
+    // 1. Create players
+    const playerOne = Player("Alice", "X");
+    const playerTwo = Player("Bob", "O");
+    const arrayPlayers = [playerOne, playerTwo];
+
+    // 2. Create array to store empty cells
     const openSpaces = [];
+
+    // 3. Player X randomly selects an empty cell - START OVER HERE
     for (let i = 0; i < gameBoard.length; i++) {
         if (gameBoard[i] === "") {
             openSpaces.push(i);
