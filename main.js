@@ -24,7 +24,10 @@ const gameFlow = (() => {
     gameBoard[randomOpenSpace] = "X";
     console.log(gameBoard);
 
-    // 2. Check whether you have 3-in-a-row (RESTART HERE)
+    // 2. Check whether you have 3-in-a-row
+     // 2a. If yes:
+            // print "Player X wins"
+            // prompt whether to play again
     if (gameBoard[0] === "X" && gameBoard[1] === "X" && gameBoard[2] === "X" ||
     gameBoard[3] === "X" && gameBoard[4] === "X" && gameBoard[5] === "X" ||
     gameBoard[6] === "X" && gameBoard[7] === "X" && gameBoard[8] === "X" ||
@@ -32,15 +35,12 @@ const gameFlow = (() => {
     gameBoard[1] === "X" && gameBoard[4] === "X" && gameBoard[7] === "X" ||
     gameBoard[2] === "X" && gameBoard[5] === "X" && gameBoard[8] === "X" ||
     gameBoard[0] === "X" && gameBoard[4] === "X" && gameBoard[8] === "X" ||
-    gameBoard[2] === "X" && gameBoard[4] === "X" && gameBoard[6] === "X" ||
-
-
-
-
-    )
-        // 2a. If yes:
-            // print "Player X wins"
-            // prompt whether to play again
-        // 2b. If no:
-            // Player Y starts turn (repeat from Step 1)
+    gameBoard[2] === "X" && gameBoard[4] === "X" && gameBoard[6] === "X") {
+        console.log("Player X wins");
+        console.log("Play again?");
+    // 2b. If no:
+        // Player Y starts turn (repeat from Step 1)
+    } else {
+        console.log("Player Y's turn");
+    }
 })();
