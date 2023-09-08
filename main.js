@@ -12,7 +12,27 @@ const Player = (name, marker) => {
     return {name, marker, winner};
 }
 
-// 2. Check whether you have 3-in-a-row (logic good, but details aren't good)
+// playRound function
+const playRound = (player, openArray) => {
+    // 4. Randomly pick an open cell on gameBoard
+    let randomOpenSpacePosition = Math.floor(Math.random() * openArray.length); // get position of open space
+    console.log(randomOpenSpacePosition);
+    let randomOpenSpaceValue = openArray[randomOpenSpacePosition]; // get value at chosen open space position
+    console.log(randomOpenSpaceValue);
+
+    // 5. Replace gameBoard value with playerOne's marker
+    gameBoard[randomOpenSpaceValue] = player.marker;
+    console.log(gameBoard);
+
+    // 6. Remove selected cell from openArray
+    openArray.splice(randomOpenSpacePosition, 1);
+    console.log(openArray);
+
+    // 7. Check if winner
+    checkWinner(player, player.marker);
+}
+
+// Check whether you have 3-in-a-row (logic good, but details aren't good) /////////////////////////////
 const checkWinner = ((player, marker) => {
     // 2a. If yes:
            // print "Player X wins"
@@ -50,12 +70,23 @@ const gameFlow = (() => {
 
 //////////////////////////////////////////////////////////////////
 
+    playRound(playerOne, openArray);
+    playRound(playerTwo, openArray);
+    playRound(playerOne, openArray);
+    playRound(playerTwo, openArray);
+    playRound(playerOne, openArray);
+    playRound(playerTwo, openArray);
+    playRound(playerOne, openArray);
+    playRound(playerTwo, openArray);
+    playRound(playerOne, openArray);
+
+    /*
     // playerOne's 1st Turn
 
     // 4. Randomly pick an open cell on gameBoard
-    let randomOpenSpacePosition = Math.floor(Math.random() * openArray.length); // get position of open space
+    randomOpenSpacePosition = Math.floor(Math.random() * openArray.length); // get position of open space
     console.log(randomOpenSpacePosition);
-    let randomOpenSpaceValue = openArray[randomOpenSpacePosition]; // get value at chosen open space position
+    randomOpenSpaceValue = openArray[randomOpenSpacePosition]; // get value at chosen open space position
     console.log(randomOpenSpaceValue);
 
     // 5. Replace gameBoard value with playerOne's marker
@@ -87,6 +118,7 @@ const gameFlow = (() => {
 
     // 7. Check if winner
     checkWinner(playerOne, playerOne.marker);
+    */
 
 ////////////////////////////////////////////////////////////////////////////
 
