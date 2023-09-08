@@ -48,10 +48,6 @@ const checkWinner = ((player, marker) => {
                 player.winner = true;
                 console.log(player);
                 return console.log(player.name + " wins. Play again?");
-           // 2b. If no:
-               // Player Y starts turn (repeat from Step 1)
-           } else {
-               return console.log("Next player's turn");
            }
 });
 
@@ -61,6 +57,7 @@ const gameFlow = (() => {
     const playerOne = Player("Alice", "O");
     const playerTwo = Player("Bob", "X");
     const arrayPlayers = [playerOne, playerTwo];
+    const possibleRounds = 9;
     let roundCounter = 1;
 
     // 2. Create open array
@@ -71,20 +68,20 @@ const gameFlow = (() => {
         }
     }
 
-//////////////////////////////////////////////////////////////////
+    // 3a. Play up to 9 rounds until winner or tie game
+    do {
+        console.log("Round " + roundCounter);
+        if (roundCounter % 2 === 1) {
+                playRound(playerOne, openArray);
+        }
+        if (roundCounter % 2 === 0) {
+                playRound(playerTwo, openArray);
+        }
+        roundCounter++;
+    } while (roundCounter <= possibleRounds && playerOne.winner === false && playerTwo.winner === false);
 
-
-
-/*
-    // 3. Play rounds until winner or draw
-    if (roundCounter % 2 === 1) {
-        playRound(playerOne, openArray);
+    if (roundCounter > possibleRounds && playerOne.winner === false && playerTwo.winner === false) {
+        console.log("Tie game");
     }
-    if (roundCounter % 2 === 0) {
-        playRound(playerTwo, openArray);
-    }
-*/
-////////////////////////////////////////////////////////////////////////////
-
 })();
 
