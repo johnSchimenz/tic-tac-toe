@@ -68,7 +68,7 @@ const gameFlow = (() => {
         }
     }
 
-    // 3a. Play up to 9 rounds until winner or tie game
+    // 3. Play up to 9 rounds until winner or tie game
     do {
         console.log("Round " + roundCounter);
         if (roundCounter % 2 === 1) {
