@@ -14,21 +14,21 @@ const Player = (name, marker) => {
 
 // playRound function
 const playRound = (player, openArray) => {
-    // 4. Randomly pick an open cell on gameBoard
+    // Randomly pick an open cell on gameBoard
     let randomOpenSpacePosition = Math.floor(Math.random() * openArray.length); // get position of open space
     console.log(randomOpenSpacePosition);
     let randomOpenSpaceValue = openArray[randomOpenSpacePosition]; // get value at chosen open space position
     console.log(randomOpenSpaceValue);
 
-    // 5. Replace gameBoard value with playerOne's marker
+    // Replace gameBoard value with playerOne's marker
     gameBoard[randomOpenSpaceValue] = player.marker;
     console.log(gameBoard);
 
-    // 6. Remove selected cell from openArray
+    // Remove selected cell from openArray
     openArray.splice(randomOpenSpacePosition, 1);
     console.log(openArray);
 
-    // 7. Check if winner
+    // Check if winner
     checkWinner(player, player.marker);
 }
 
@@ -37,15 +37,17 @@ const checkWinner = ((player, marker) => {
     // 2a. If yes:
            // print "Player X wins"
            // prompt whether to play again
-           if (gameBoard[0] === marker && gameBoard[1] === marker && gameBoard[2] === marker ||
-           gameBoard[3] === marker && gameBoard[4] === marker && gameBoard[5] === marker ||
-           gameBoard[6] === marker && gameBoard[7] === marker && gameBoard[8] === marker ||
-           gameBoard[0] === marker && gameBoard[3] === marker && gameBoard[6] === marker ||
-           gameBoard[1] === marker && gameBoard[4] === marker && gameBoard[7] === marker ||
-           gameBoard[2] === marker && gameBoard[5] === marker && gameBoard[8] === marker ||
-           gameBoard[0] === marker && gameBoard[4] === marker && gameBoard[8] === marker ||
-           gameBoard[2] === marker && gameBoard[4] === marker && gameBoard[6] === marker) {
-               return console.log(player + "wins. Play again?");
+            if (gameBoard[0] === marker && gameBoard[1] === marker && gameBoard[2] === marker ||
+            gameBoard[3] === marker && gameBoard[4] === marker && gameBoard[5] === marker ||
+            gameBoard[6] === marker && gameBoard[7] === marker && gameBoard[8] === marker ||
+            gameBoard[0] === marker && gameBoard[3] === marker && gameBoard[6] === marker ||
+            gameBoard[1] === marker && gameBoard[4] === marker && gameBoard[7] === marker ||
+            gameBoard[2] === marker && gameBoard[5] === marker && gameBoard[8] === marker ||
+            gameBoard[0] === marker && gameBoard[4] === marker && gameBoard[8] === marker ||
+            gameBoard[2] === marker && gameBoard[4] === marker && gameBoard[6] === marker) {
+                player.winner = true;
+                console.log(player);
+                return console.log(player.name + " wins. Play again?");
            // 2b. If no:
                // Player Y starts turn (repeat from Step 1)
            } else {
@@ -55,10 +57,11 @@ const checkWinner = ((player, marker) => {
 
 // Game-flow object
 const gameFlow = (() => {
-    // 1. Create players
+    // 1. Create players and round counter
     const playerOne = Player("Alice", "O");
     const playerTwo = Player("Bob", "X");
     const arrayPlayers = [playerOne, playerTwo];
+    let roundCounter = 1;
 
     // 2. Create open array
     let openArray = [];
@@ -70,56 +73,17 @@ const gameFlow = (() => {
 
 //////////////////////////////////////////////////////////////////
 
-    playRound(playerOne, openArray);
-    playRound(playerTwo, openArray);
-    playRound(playerOne, openArray);
-    playRound(playerTwo, openArray);
-    playRound(playerOne, openArray);
-    playRound(playerTwo, openArray);
-    playRound(playerOne, openArray);
-    playRound(playerTwo, openArray);
-    playRound(playerOne, openArray);
 
-    /*
-    // playerOne's 1st Turn
 
-    // 4. Randomly pick an open cell on gameBoard
-    randomOpenSpacePosition = Math.floor(Math.random() * openArray.length); // get position of open space
-    console.log(randomOpenSpacePosition);
-    randomOpenSpaceValue = openArray[randomOpenSpacePosition]; // get value at chosen open space position
-    console.log(randomOpenSpaceValue);
-
-    // 5. Replace gameBoard value with playerOne's marker
-    gameBoard[randomOpenSpaceValue] = playerOne.marker;
-    console.log(gameBoard);
-
-    // 6. Remove selected cell from openArray
-    openArray.splice(randomOpenSpacePosition, 1);
-    console.log(openArray);
-
-    // 7. Check if winner
-    checkWinner(playerOne, playerOne.marker);
-
-    // playerTwo's 1st Turn
-
-    // 4. Randomly pick an open cell on gameBoard
-    randomOpenSpacePosition = Math.floor(Math.random() * openArray.length); // get position of open space
-    console.log(randomOpenSpacePosition);
-    randomOpenSpaceValue = openArray[randomOpenSpacePosition]; // get value at chosen open space position
-    console.log(randomOpenSpaceValue);
-
-    // 5. Replace gameBoard value with playerTwo's marker
-    gameBoard[randomOpenSpaceValue] = playerTwo.marker;
-    console.log(gameBoard);
-
-    // 6. Remove selected cell from openArray
-    openArray.splice(randomOpenSpacePosition, 1);
-    console.log(openArray);
-
-    // 7. Check if winner
-    checkWinner(playerOne, playerOne.marker);
-    */
-
+/*
+    // 3. Play rounds until winner or draw
+    if (roundCounter % 2 === 1) {
+        playRound(playerOne, openArray);
+    }
+    if (roundCounter % 2 === 0) {
+        playRound(playerTwo, openArray);
+    }
+*/
 ////////////////////////////////////////////////////////////////////////////
 
 })();
