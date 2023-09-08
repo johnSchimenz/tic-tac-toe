@@ -21,17 +21,15 @@ const gameFlow = (() => {
 
     // 2. Create open array
     let openArray = [];
-
-//////////////////////////////////////////////////////////////////
-
-    // playerOne's 1st Turn
-    // 3. Figure out which cells are open on gameBoard
     for (let i = 0; i < gameBoard.length; i++) {
         if (gameBoard[i] !== playerOne.marker || gameBoard[i] !== playerTwo.marker) {
             openArray.push(i);
         }
     }
-    console.log(openArray);
+
+//////////////////////////////////////////////////////////////////
+
+    // playerOne's 1st Turn
 
     // 4. Randomly pick an open cell on gameBoard
     let randomOpenSpacePosition = Math.floor(Math.random() * openArray.length); // get position of open space
@@ -43,17 +41,11 @@ const gameFlow = (() => {
     gameBoard[randomOpenSpaceValue] = playerOne.marker;
     console.log(gameBoard);
 
-    // 6. Reset openArray
-    openArray = [];
+    // 6. Remove selected cell from openArray
+    openArray.splice(randomOpenSpacePosition, 1);
+    console.log(openArray);
 
     // playerTwo's 1st Turn
-    // 3. Figure out which cells are open on gameBoard
-    for (let i = 0; i < gameBoard.length; i++) {
-        if (gameBoard[i] !== playerOne.marker || gameBoard[i] !== playerTwo.marker) {
-            openArray.push(i);
-        }
-    }
-    console.log(openArray);
 
     // 4. Randomly pick an open cell on gameBoard
     randomOpenSpacePosition = Math.floor(Math.random() * openArray.length); // get position of open space
@@ -65,13 +57,11 @@ const gameFlow = (() => {
     gameBoard[randomOpenSpaceValue] = playerTwo.marker;
     console.log(gameBoard);
 
-   // 6. Reset openArray
-   openArray = [];
+    // 6. Remove selected cell from openArray
+    openArray.splice(randomOpenSpacePosition, 1);
+    console.log(openArray);
 
 //////////////////////////////////////////////////////////////////////////
-
-
-
 
 
 
