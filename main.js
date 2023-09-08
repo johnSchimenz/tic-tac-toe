@@ -32,7 +32,7 @@ const playRound = (player, openArray) => {
     checkWinner(player, player.marker);
 }
 
-// Check whether you have 3-in-a-row (logic good, but details aren't good) /////////////////////////////
+// Check whether you have 3-in-a-row
 const checkWinner = ((player, marker) => {
     // 2a. If yes:
            // print "Player X wins"
