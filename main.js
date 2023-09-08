@@ -12,6 +12,27 @@ const Player = (name, marker) => {
     return {name, marker, winner};
 }
 
+// 2. Check whether you have 3-in-a-row (logic good, but details aren't good)
+const checkWinner = ((player, marker) => {
+    // 2a. If yes:
+           // print "Player X wins"
+           // prompt whether to play again
+           if (gameBoard[0] === marker && gameBoard[1] === marker && gameBoard[2] === marker ||
+           gameBoard[3] === marker && gameBoard[4] === marker && gameBoard[5] === marker ||
+           gameBoard[6] === marker && gameBoard[7] === marker && gameBoard[8] === marker ||
+           gameBoard[0] === marker && gameBoard[3] === marker && gameBoard[6] === marker ||
+           gameBoard[1] === marker && gameBoard[4] === marker && gameBoard[7] === marker ||
+           gameBoard[2] === marker && gameBoard[5] === marker && gameBoard[8] === marker ||
+           gameBoard[0] === marker && gameBoard[4] === marker && gameBoard[8] === marker ||
+           gameBoard[2] === marker && gameBoard[4] === marker && gameBoard[6] === marker) {
+               return console.log(player + "wins. Play again?");
+           // 2b. If no:
+               // Player Y starts turn (repeat from Step 1)
+           } else {
+               return console.log("Next player's turn");
+           }
+});
+
 // Game-flow object
 const gameFlow = (() => {
     // 1. Create players
@@ -45,6 +66,9 @@ const gameFlow = (() => {
     openArray.splice(randomOpenSpacePosition, 1);
     console.log(openArray);
 
+    // 7. Check if winner
+    checkWinner(playerOne, playerOne.marker);
+
     // playerTwo's 1st Turn
 
     // 4. Randomly pick an open cell on gameBoard
@@ -61,50 +85,10 @@ const gameFlow = (() => {
     openArray.splice(randomOpenSpacePosition, 1);
     console.log(openArray);
 
-//////////////////////////////////////////////////////////////////////////
+    // 7. Check if winner
+    checkWinner(playerOne, playerOne.marker);
 
-
-
-    /* 2. Create array to store empty cells
-    const openSpaces = [];
-    for (let i = 0; i < gameBoard.length; i++) {
-        if (gameBoard[i] === "") {
-            openSpaces.push(i);
-        }
-    }
-
-    // 3. playerOne randomly selects an empty cell
-    gameBoard[randomOpenSpace] = playerOne.marker; // put marker on digit location
-    console.log(randomOpenSpace);
-    openSpaces.splice(randomOpenSpace, 1, "Closed"); // 
-    console.log(openSpaces);
-    console.log(gameBoard);
-    */
-
-
-    // **6. check if current player wins
-
-
+////////////////////////////////////////////////////////////////////////////
 
 })();
 
-// 2. Check whether you have 3-in-a-row (logic good, but details aren't good)
-const checkWinner = ((player, marker) => {
-     // 2a. If yes:
-            // print "Player X wins"
-            // prompt whether to play again
-            if (gameBoard[0] === marker && gameBoard[1] === marker && gameBoard[2] === marker ||
-            gameBoard[3] === marker && gameBoard[4] === marker && gameBoard[5] === marker ||
-            gameBoard[6] === marker && gameBoard[7] === marker && gameBoard[8] === marker ||
-            gameBoard[0] === marker && gameBoard[3] === marker && gameBoard[6] === marker ||
-            gameBoard[1] === marker && gameBoard[4] === marker && gameBoard[7] === marker ||
-            gameBoard[2] === marker && gameBoard[5] === marker && gameBoard[8] === marker ||
-            gameBoard[0] === marker && gameBoard[4] === marker && gameBoard[8] === marker ||
-            gameBoard[2] === marker && gameBoard[4] === marker && gameBoard[6] === marker) {
-                return console.log(player + "wins. Play again?");
-            // 2b. If no:
-                // Player Y starts turn (repeat from Step 1)
-            } else {
-                return console.log("Next player's turn");
-            }
-})();
