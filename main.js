@@ -1,12 +1,27 @@
 "use strict";
 
-// Gameboard object
+// Gameboard module
 const gameBoard = (() => {
     const arrayGameBoard = ["", "", "", "", "", "", "", "", ""];
+
+//////////////////////////////////////////////////////////////
+    // Create buttons for all cells of tic-tac-toe board - this works when in global scope, after the Gameboard module is initialized, but it does not work in the Gameboard module nor before
+    const gameBoardContainer = document.querySelector("#game-board");
+    for (let i = 0; i < gameBoard.length; i++) {
+        const cellCreator = document.createElement("button");
+        cellCreator.setAttribute("type", "button");
+        cellCreator.setAttribute("id", "cell-" + i);
+        cellCreator.setAttribute("class", "cell");
+        gameBoardContainer.appendChild(cellCreator);
+    }
+///////////////////////////////////////////////////////////
+
     return arrayGameBoard;
+
+    
 })();
 
-// Players objects
+// Player factory
 const Player = (name, marker) => {
     const winner = false;
     return {name, marker, winner};
@@ -51,7 +66,7 @@ const checkWinner = ((player, marker) => {
            }
 });
 
-// Game-flow object
+// Game-flow module
 const gameFlow = (() => {
     // 1. Create players and round counter
     const playerOne = Player("Alice", "O");
